@@ -1,0 +1,16 @@
+{
+  "name": "week2-homework",
+  "version": "1.0.0",
+  "description": "Week 2 Homework for Applaudo Studios",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gerson",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
