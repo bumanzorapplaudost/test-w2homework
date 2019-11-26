@@ -1,17 +1,18 @@
 class Task {
 
   constructor() {
-    this.tasksUI = new UI();
     this.storage = new Storage();
-
-    this.taskList = this.tasksAPI.taskList;
-    this.tasksUI.listTasks(this.taskList);
+    this.taskList = this.storage.taskList;
   }
 
   createTask(data) {
-    this.taskList.push(data);
-    this.tasksUI.listTasks(this.tasksList);
-    this.storage.createTask(data);
+    const result = this.storage.saveTask(data);
+    if (Array.isArray(result) && result.length > 0) {
+      this.taskList = result;
+      return 'OK';
+    }
+
+    return 'Error';
   }
 
   editTask(taskID, task) {
@@ -20,6 +21,10 @@ class Task {
 
 
   deleteTask(taskID) {
-    
+    if (typeof taskID !== 'number') {
+      return 'Error: This is not a number';
+    }
+
+    return this.storage.deleteTask(taskID);
   }
 }
