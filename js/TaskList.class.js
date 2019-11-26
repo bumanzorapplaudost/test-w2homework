@@ -1,14 +1,11 @@
+/* eslint-disable no-console */
 class TaskList {
-
-  constructor() {
-    this.storage = new Storage();
-  }z
 
   listTasks(filter = '') {
     if (filter !== '') {
-      return this.storage.getTask(filter);
+      Storage.getTask(filter);
     }
-    return this.storage.taskList;
+    return Storage.getAllTasks();
   }
 
   sortTasks(sortBy = 'desc') {
@@ -28,4 +25,23 @@ class TaskList {
     return this.storage.taskList.filter((task) => task.status === stat);
   }
 
+  editTask(taskID) {
+  
+  }
+
+  createTask(taskData) {
+    const taskCreationResult = new Task(taskData);
+    if (taskCreationResult === 'OK') {
+      return taskCreationResult;
+    }
+    return 'Error when creating Task';
+  }
+
+  deleteTask(taskID) {
+    if (typeof taskID !== 'number') {
+      return 'Error: This is not a number';
+    }
+
+    return this.storage.deleteTask(taskID);
+  }
 }

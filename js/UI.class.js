@@ -3,9 +3,8 @@
 class UI {
 
   constructor() {
-    this.taskClass = new Task();
     this.taskListClass = new TaskList();
-    this.tasks = this.taskClass.storage.classList;
+    this.tasks = Storage.getAllTasks();
 
     // Declaring objects in the DOM
     this.idInput = document.querySelector('#task_id');
@@ -27,20 +26,20 @@ class UI {
       status: this.statusCheckBox.checked,
       creationDate: `${date.toLocaleDateString()} ${date.toLocaleTimeString}`,
     }; */
-    const taskToAdd = {
+    /* const taskToAdd = {
       id: 1,
       name: 'Test task',
       assignee: 'Unassigned',
       status: true,
       creationDate: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-    };
+    }; */
 
-    const result = this.taskClass.createTask(taskToAdd);
-    if (result === 'OK') {
+    /* const result = this.taskClass.createTask(taskToAdd); */
+    /* if (result === 'OK') {
       this.tasks = this.taskClass.taskList;
     } else {
       alert('Error when trying to save the new task');
-    }
+    } */
 
     this.listTasks();
   }
@@ -50,17 +49,17 @@ class UI {
     let output = '';
     tasks.forEach((task) => {
       output += `
-        <tr>
-          <td>${task.id}</td>
-          <td>${task.name}</td>
-          <td>${task.assignee}</td>
-          <td>${task.status ? 'Done' : 'Pending'}</td>
-          <td>${task.creationDate}</td>
-          <td>
-            <a href='#edit'>Edit</a> |
-            <a href='#remove'>Remove</a>
-          </td>
-        </tr>
+        <div class="task">
+        <div class="task-head">Task ID: ${task.id}</div>
+        <div class="task-body">
+          <span>${task.name}</span>
+          <a href='#'>${task.status ? 'Done' : 'Pending'}</a>
+        </div>
+        <div class="task-actions">
+          <button class="small-button warning">Edit</button>
+          <button class="small-button danger">Remove</button>
+        </div>
+      </div>
       `;
     });
     this.tasksTableItem.innerHTML = output;
