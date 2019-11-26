@@ -1,21 +1,26 @@
 class TaskList {
+
   constructor() {
+    this.storage = new Storage();
+  }
+
+  listTasks(filter = '') {
+    if (filter !== '' && typeof Number(filter) === 'number') {
+      return this.storage.getTask(filter);
+    }
+    return this.storage.taskList;
+  }
+
+  sortTasks(sortBy = 'desc') {
 
   }
 
-  listTasks() {
+  searchTasks(filter) {
 
   }
 
-  sortTasks() {
+  filterTasks(status = 0) {
 
   }
 
-  searchTasks() {
-
-  }
-
-  filterTasks() {
-    
-  }
 }

@@ -1,9 +1,10 @@
 class Task {
+
   constructor() {
     this.tasksUI = new UI();
     this.storage = new Storage();
 
-    this.taskList = this.tasksAPI.tasksFromLocalStorage;
+    this.taskList = this.tasksAPI.taskList;
     this.tasksUI.listTasks(this.taskList);
   }
 
